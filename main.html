@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title></title>
+    <script>
+        const electron = require("electron");
+        const ipc = electron.ipcRenderer;
+        document.addEventListener("DOMContentLoaded", function(){
+            ipc.send("mainWindowLoaded")
+            ipc.on("resultSent", function(evt, result){
+                let resultEl = document.getElementById("result");
+                console.log(result);
+                for(var i = 0; i < result.length;i++){
+                    resultEl.innerHTML += "Nom de site: " + result[i].nom.toString() + "<br/>";
+                }
+            });
+        });
+    </script>
+</head>
+<body>  
+    <p>fjeojojzojeo jozjzo jozjtozjtt</p>
+<p id="result"></p>
+<script>require('./main.js');</script>
+</body>
+</html>
